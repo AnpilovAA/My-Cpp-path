@@ -37,6 +37,21 @@ class Player{
 };
 
 
+class Vector2{
+    public:
+        float x;
+        float y;
+        Vector2(float x, float y)
+            : x(x), y(y)
+            {
+            }
+        Vector2 operator-(const Vector2& otherVector2){
+            return Vector2(x-otherVector2.x, y-otherVector2.y);
+        }
+};
+
+
+
 int main(){
     Point a(2, 3);
     Point b(5,7);
@@ -49,4 +64,13 @@ int main(){
 
     std::cout << (d == f) << std::endl;
     std::cout << (d == g) << std::endl;
+
+    Vector2 t(10, 8);
+    Vector2 y(3, 5);
+    Vector2 u = t - y;
+    std::cout << u.x << " " << u.y << std::endl;
 }
+// a + b это сложение двух объектов класса в данном случае мы складывали параметры объектов, и сумму этих параметров объектов использовали для инициализации
+// operator+ мы сообщаем компилятору, что наш класс позволяем объектам класса производить слажение его параметров.
+// operator+ должен вернуть объект/экземпляр класса Point
+// operator== является булевым оператором, он сравнивает параметры класса а вот operator+ является математическим и позволяет складывать параметры 
