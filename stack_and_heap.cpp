@@ -38,11 +38,3 @@ public:
         return capacity_;
     }
 };
-
-
-int main(){
-    AudioBuffer buffer(10);
-    buffer.set_sample(5, 4);
-    std::cout << buffer.get_sample(2) << std::endl;
-    std::cout << buffer.get_capacity() << std::endl;
-}
