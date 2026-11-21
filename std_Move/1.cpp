@@ -23,6 +23,10 @@ class WeaponBag{
         size_t capacity_ = 0;
         std::unique_ptr<Item[]> items_;
     public:
+        /*
+        explicit
+        Запрещает компилятору молча превращать число в объект. Без него WeaponBag b = 3; скомпилировалось бы (тройка стала бы сумкой). С explicit — только явный вызов WeaponBag b(3)
+        */
         explicit WeaponBag(size_t capacity)
             :capacity_(capacity), items_(std::make_unique<Item[]>(capacity_))
             {
