@@ -43,6 +43,22 @@ void example2(){
 }
 
 
+double getDistanceMile(){
+    double dist;
+    std::cout << "Input distance in miles: " << std::endl;
+    std::cin >> dist;
+    return dist;
+}
+
+
+double getDistanceKilometers(double dist){
+    double kmInMile = 1.609344;
+    return dist * kmInMile;
+}
+
 int main(){
-    example2();
+    double distMile=getDistanceMile();
+    std::cout << "Distance in Kilometers: " << getDistanceKilometers(distMile) << std::endl;
+    std::system("pause>nul");
+    return 0;
 }

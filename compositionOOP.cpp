@@ -2,12 +2,12 @@
 #include <string>
 
 
-class Weapon{
+class Item{
     private:
         std::string name;
         int damage;
     public:
-        Weapon(std::string name, int damage)
+        Item(std::string name, int damage)
             : name(name), damage(damage)
             {
             }
@@ -23,7 +23,7 @@ class Weapon{
 class Player{
     private:
         std::string name;
-        Weapon weapon;
+        Item weapon;
     public:
         Player(std::string name, std::string weaponName, int weaponDamage)
             : name(name), weapon(weaponName, weaponDamage)
@@ -32,7 +32,7 @@ class Player{
         std::string getName(){
             return name;
         }
-        Weapon getWeapon(){
+        Item getWeapon(){
             return weapon;
         }
         void attack(){
@@ -42,17 +42,17 @@ class Player{
 
 class Invetory{
     private:
-        Weapon weapon1;
-        Weapon weapon2;
+        Item weapon1;
+        Item weapon2;
     public:
         Invetory(std::string weaponName1, int weaponDamage1, std::string weaponName2, int weaponDamage2)
             : weapon1(weaponName1, weaponDamage1), weapon2(weaponName2, weaponDamage2)
             {
             }
-        Weapon getWeapon1(){
+        Item getWeapon1(){
             return weapon1;
         }
-        Weapon getWeapon2(){
+        Item getWeapon2(){
             return weapon2;
         }
 };
@@ -84,8 +84,8 @@ int main(){
     player.attack();
     Player2 player2("CJ", "Minigun", 65, "Glock", 12);
     Invetory invetory = player2.getInventory();
-    Weapon wepon1 = invetory.getWeapon1();
-    Weapon weapon2 = invetory.getWeapon2();
+    Item wepon1 = invetory.getWeapon1();
+    Item weapon2 = invetory.getWeapon2();
     std::cout<< wepon1.getName() << " " << wepon1.getDamage() << std::endl;
     std::cout<< weapon2.getName() << " " << weapon2.getDamage() << std::endl;
 }
