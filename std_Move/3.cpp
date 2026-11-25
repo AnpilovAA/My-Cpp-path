@@ -2,20 +2,6 @@
 #include <iostream>
 
 
-class Item{
-    private:
-        size_t item_size_;
-    public:
-        Item() = default;
-        explicit Item(size_t item_size)
-            :item_size_(item_size)
-            {
-            }
-        size_t getSize() const{
-            return item_size_;
-        };
-};
-
 
 class Item{
     private:
@@ -46,8 +32,19 @@ class Chest{
             if (item_){
                 std::cout<< "Not empty" << std::endl;
             } else {
-                std::cout
+                std::cout "Chest Empty!" << std::endl;
             }
         };
 
+};
+
+
+int main(){
+    std::unique_ptr<Chest> newChest;
+    std::unique_ptr<Item> branch = std::make_unique<Item>(7);
+    newChest->store(std::move(branch));
+    newChest->empty();
+    auto lootedBranch = newChest->loot();
+    newChest->empty();
+    
 };
