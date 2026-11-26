@@ -5,11 +5,11 @@
 
 class Item{
     private:
-        size_t item_size_;
+        size_t item_size_ = 0;
     public:
-        Item = default;
-        explicit Item(size_t item)
-            :item_size_(item);
+        Item() = default;
+        explicit Item(size_t item_size)
+            :item_size_(item_size)
             {
             }
         size_t getSize() const{
@@ -18,6 +18,11 @@ class Item{
 };
 
 
+std::unique_ptr<Item> craftItem(size_t size){
+    auto newItem = std::make_unique<Item>(size);
+    return newItem;
+};
+
 class Chest{
     std::unique_ptr<Item> item_;
     public:
@@ -25,14 +30,16 @@ class Chest{
             item_ = std::move(item);
         }
         std::unique_ptr<Item> loot(){
-            auto stored_item = std::make_unique<Item>(item_);
-            return std::move(stored_item);
+            std::unique_ptr<Item> stored_item = std::move(item_);
+            return stored_item;
         }
-        bool empty(){
+        bool empty() const{
             if (item_){
                 std::cout<< "Not empty" << std::endl;
+                return false;
             } else {
-                std::cout "Chest Empty!" << std::endl;
+                std::cout << "Chest Empty!" << std::endl;
+                return true;
             }
         };
 
@@ -40,11 +47,11 @@ class Chest{
 
 
 int main(){
-    std::unique_ptr<Chest> newChest;
-    std::unique_ptr<Item> branch = std::make_unique<Item>(7);
+    auto newChest = std::make_unique<Chest>();
+    auto branch = craftItem(7);
     newChest->store(std::move(branch));
     newChest->empty();
     auto lootedBranch = newChest->loot();
     newChest->empty();
-    
-};
+    auto anotherItem = newChest->loot();
+}
